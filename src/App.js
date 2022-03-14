@@ -1,5 +1,6 @@
 import "./App.css";
-import ExpenseItem from "./components/ExpenseItem";
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   //below we create an array
@@ -22,26 +23,18 @@ function App() {
       amount: 664.12,
       date: new Date(2020, 6, 4),
     },
+    {
+      id: "e4",
+      title: "Beverages",
+      amount: 44.12,
+      date: new Date(2021, 6, 4),
+    },
   ];
   //below is an HTML code inside java script. But here it works due to the feature called jsx(java script xml) invented by react team
   return (
     <div>
-      <h2>Lets get started!!</h2>
-      <ExpenseItem //here we pass the values as props to components
-        title={expenses[0].title}
-        amount={expenses[0].amount}
-        date={expenses[0].date}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        amount={expenses[1].amount}
-        date={expenses[1].date}
-      />
-      <ExpenseItem
-        title={expenses[2].title}
-        amount={expenses[2].amount}
-        date={expenses[2].date}
-      />
+      <NewExpense />
+      <Expenses items={expenses} />
     </div>
   );
 }
