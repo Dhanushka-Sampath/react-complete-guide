@@ -30,10 +30,18 @@ function App() {
       date: new Date(2021, 6, 4),
     },
   ];
+
+  const addExpenseHandler = (expense) => {
+    //expense is an object parameter
+    console.log("In App.js");
+    console.log(expense);
+  };
+
   //below is an HTML code inside java script. But here it works due to the feature called jsx(java script xml) invented by react team
   return (
+    //onAddExpense can be any name. now we have taken data upward which was 2 components below the App.js
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
   );
