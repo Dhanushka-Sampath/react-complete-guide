@@ -49,7 +49,7 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle, //title points to states variable 'enteredTitle'
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
 
@@ -94,6 +94,9 @@ const ExpenseForm = (props) => {
       </div>
       <div className="new-expense_actions">
         <button type="submit">Add Expense</button>
+        <button type="cancel" onClick={props.onCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import ExpenseItem from "./ExpenseItem";
+// import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 function Expenses(props) {
   const [filterdYear, setFilteredYear] = useState("2020");
@@ -10,23 +12,20 @@ function Expenses(props) {
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
+
+  //filter is an inbuilt method which returns a new array
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filterdYear;
+  });
+
   return (
     <Card className="expenses">
       <ExpensesFilter
         selected={filterdYear}
         onChangeFilter={filterChangeHandler}
       />
-      {props.items.map(
-        (
-          expense //map has been used instead of calling the same component again and again
-        ) => (
-          <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        )
-      )}
+      <ExpensesChart expenses={filteredExpenses} />
+      <ExpensesList items={filteredExpenses} />
       {/* <ExpenseItem //here we pass the values as props to components
         title={props.items[0].title}
         amount={props.items[0].amount}
